@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SlideMenuControllerSwift
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Google Map API init
+        GMSServices.provideAPIKey("AIzaSyAmG59jZCzeqXlRK9wbytscseo5A0oxQ_8")
         // Override point for customization after application launch.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainVC = storyboard.instantiateViewControllerWithIdentifier("Main")
+        let leftVC = storyboard.instantiateViewControllerWithIdentifier("Left")
+        
+        let slideMenuController = SlideMenuController(mainViewController: mainVC, leftMenuViewController: leftVC)
+        self.window?.rootViewController = slideMenuController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
